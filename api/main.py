@@ -3,21 +3,23 @@ from datetime import datetime
 # import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from src.routes import sms, user
-from src.utils.prisma import prisma
+
+from src.routes import user
+
+# from src.utils.prisma import prisma
 
 load_dotenv()
 app = FastAPI()
 
 
-@app.on_event("startup")
-async def startup():
-    await prisma.connect()
-
-
-@app.on_event("shutdown")
-async def shutdown():
-    await prisma.disconnect()
+# @app.on_event("startup")
+# async def startup():
+#     await prisma.connect()
+#
+#
+# @app.on_event("shutdown")
+# async def shutdown():
+#     await prisma.disconnect()
 
 
 @app.get("/", tags=["Root"])
@@ -26,7 +28,7 @@ async def read_root():
 
 
 app.include_router(user.router)
-app.include_router(sms.router)
+# app.include_router(sms.router)
 
 
 @app.get("/health-checker")
