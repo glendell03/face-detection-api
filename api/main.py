@@ -3,7 +3,6 @@ from datetime import datetime
 # import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
-
 from src.routes import sms, user
 from src.utils.prisma import prisma
 
@@ -19,6 +18,11 @@ async def startup():
 @app.on_event("shutdown")
 async def shutdown():
     await prisma.disconnect()
+
+
+@app.get("/", tags=["Root"])
+async def read_root():
+    return {"message": "Welcome to this fantastic app!"}
 
 
 app.include_router(user.router)
