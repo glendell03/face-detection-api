@@ -10,7 +10,7 @@ micros:
       env:
         - name: DATABASE_URL
           description: Database
-          default: "postgresql://postgres:Yo7aZzGQ1ztcThWF@db.wpjwqtwsukeqvsuozknn.supabase.co:5432/postgres"
+          default: "postgresql://postgres:Switzerland03270107@db.wunudblrqaeyuefohhco.supabase.co:5432/postgres"
         - name: SUPABASE_URL
           description: Supabase url 
           default: "https://wunudblrqaeyuefohhco.supabase.co"
@@ -22,7 +22,7 @@ micros:
           default: "ACf9639dcaeebb6d45c1889d9e2ddcdfb0"
         - name: TWILIO_AUTH_TOKEN
           description: Twilion auth token
-          default: "abbf29ade0472418de9a20928142a7dc"
+          default: "45e537fcb5462608bb440ad9463b93d9"
         - name: TWILIO_PHONE 
           description: Twilio Phone
           default: "+12543182693"
