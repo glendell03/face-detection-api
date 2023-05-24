@@ -15,8 +15,11 @@ def get_latest_sms_log(name: str):
         .limit(1)
         .eq("name", name)
         .order("created_at", desc=True)
-        .single()
+        # .single()
         .execute()
     )
 
-    return res.data
+    if len(res.data) == 0:
+        return None
+    else:
+        return res.data[0]

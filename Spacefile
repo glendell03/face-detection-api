@@ -5,6 +5,7 @@ micros:
     src: ./
     engine: python3.9
     primary: true 
+    public: true
     run: uvicorn main:app
     presets:
       env:
@@ -26,3 +27,4 @@ micros:
         - name: TWILIO_PHONE 
           description: Twilio Phone
           default: "+12543182693"
+

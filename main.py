@@ -6,21 +6,10 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 
 from src.routes import sms, user
-# from src.utils.prisma import prisma
 
 sys.path
 load_dotenv()
 app = FastAPI()
-
-
-# @app.on_event("startup")
-# async def startup():
-#     await prisma.connect()
-#
-#
-# @app.on_event("shutdown")
-# async def shutdown():
-#     await prisma.disconnect()
 
 
 @app.get("/", tags=["Root"])
