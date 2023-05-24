@@ -1,13 +1,14 @@
+import sys
 from datetime import datetime
 
 # import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
-from src.routes import user
-
+from src.routes import sms, user
 # from src.utils.prisma import prisma
 
+sys.path
 load_dotenv()
 app = FastAPI()
 
@@ -24,11 +25,11 @@ app = FastAPI()
 
 @app.get("/", tags=["Root"])
 async def read_root():
-    return {"message": "Welcome to this fantastic app!"}
+    return {"message": "Welcome"}
 
 
 app.include_router(user.router)
-# app.include_router(sms.router)
+app.include_router(sms.router)
 
 
 @app.get("/health-checker")

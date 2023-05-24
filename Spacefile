@@ -4,5 +4,25 @@ micros:
   - name: face-detection-api
     src: ./
     engine: python3.9
-    primary: true
+    primary: true 
     run: uvicorn main:app
+    presets:
+      env:
+        - name: DATABASE_URL
+          description: Database
+          default: "postgresql://postgres:Yo7aZzGQ1ztcThWF@db.wpjwqtwsukeqvsuozknn.supabase.co:5432/postgres"
+        - name: SUPABASE_URL
+          description: Supabase url 
+          default: "https://wunudblrqaeyuefohhco.supabase.co"
+        - name: SUPABASE_KEY
+          description: Supabase key
+          default: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1bnVkYmxycWFleXVlZm9oaGNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQ3MzQyNTksImV4cCI6MjAwMDMxMDI1OX0.XKDZxMM8GFG2oiZlYjNrrRIKF-pv5VUGG5kMb6TunFY"
+        - name: TWILIO_ACCOUNT_SID 
+          description: Twilion acc sid
+          default: "ACf9639dcaeebb6d45c1889d9e2ddcdfb0"
+        - name: TWILIO_AUTH_TOKEN
+          description: Twilion auth token
+          default: "abbf29ade0472418de9a20928142a7dc"
+        - name: TWILIO_PHONE 
+          description: Twilio Phone
+          default: "+12543182693"
