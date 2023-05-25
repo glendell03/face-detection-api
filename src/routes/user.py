@@ -41,12 +41,15 @@ async def get_user_datasets():
 class AddUser(BaseModel):
     name: str
     phone: str
+    grade: int
+    section: str
+    guardian: str
 
 
 @router.post("/add")
 async def add_user(req: AddUser):
     try:
-        data = create_user(req.name, req.phone)
+        data = create_user(req.name, req.phone, req.grade, req.section, req.guardian)
 
         return {"success": True, "message": "Successfully created a user", "data": data}
     except Exception as e:
