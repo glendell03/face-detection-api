@@ -1,11 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 
 from src.services.storage import get_files, get_public_url
+from src.services.user import create_user, get_user_by_name
 
 router = APIRouter(prefix="/user", tags=["User"])
 
 
-@router.get("/get")
+@router.get("/get/datasets")
 async def get_user_datasets():
     # Get the folder of the student
     folders = get_files("Image Database")
@@ -34,3 +36,27 @@ async def get_user_datasets():
         datasets.append({"name": folderName, "images": urls})
 
     return {"success": True, "count": len(datasets), "datasets": datasets}
+
+
+class AddUser(BaseModel):
+    name: str
+    phone: str
+
+
+@router.post("/add")
+async def add_user(req: AddUser):
+    try:
+        data = create_user(req.name, req.phone)
+
+        return {"success": True, "message": "Successfully created a user", "data": data}
+    except Exception as e:
+        return HTTPException(500, e)
+
+
+@router.get("/get/{name}")
+async def get_user_data(name: str):
+    try:
+        data = get_user_by_name(name)
+        return {"user": data}
+    except Exception as e:
+        return HTTPException(500, e)
