@@ -67,7 +67,6 @@ storage3==0.5.2
 StrEnum==0.4.10
 supabase==1.0.3
 supafunc==0.2.2
-tomli==2.0.1
 tomlkit==0.11.8
 tqdm==4.65.0
 twilio==8.2.1

@@ -44,16 +44,16 @@ async def send_sms(req: SendSMS):
         log = insert_sms_log(req.name, req.photo)
 
         # Send a message
-        message =  twilio.messages.create(
+        message = twilio.messages.create(
             body=req.body,
-            from_=os.getenv("TWILIO_PHONE") or "+12543182693",
+            from_="+14027808137",
             to=req.send_to,
         )
 
         return {
             "success": True,
             "log": log,
-            "message": message,
+            "message": message.sid,
         }
     except Exception as e:
         return HTTPException(500, e)
