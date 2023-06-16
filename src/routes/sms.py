@@ -8,6 +8,7 @@ from pydantic import BaseModel
 
 from src.services.sms_log import get_latest_sms_log, insert_sms_log
 from src.utils.twilio import twilio
+from src.utils.vonage import sms
 
 router = APIRouter(prefix="/sms", tags=["Sms"])
 
@@ -43,17 +44,15 @@ async def send_sms(req: SendSMS):
         # if name is not in the log create
         log = insert_sms_log(req.name, req.photo)
 
-        # Send a message
-        message = twilio.messages.create(
-            body=req.body,
-            from_="+14027808137",
-            to=req.send_to,
+        message = sms.send_message(
+            {"from": "SUBAYBAI", "to": req.send_to, "text": req.body}
         )
 
-        return {
-            "success": True,
-            "log": log,
-            "message": message.sid,
-        }
+        message_res = message["messages"][0]
+
+        if message_res["status"] != "0":
+            return HTTPException(400, message_res["error-text"])
+
+        return {"success": True, "log": log, "message": message}
     except Exception as e:
         return HTTPException(500, e)

@@ -27,4 +27,7 @@ micros:
         - name: TWILIO_PHONE 
           description: Twilio Phone
           default: "+14027808137"
+        - name: VERSION
+          description: App Version
+          default: 0.0.2
 
